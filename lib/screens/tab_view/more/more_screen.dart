@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:touriso/screens/auth/auth_screen.dart';
 import 'package:touriso/screens/shared/page_layout.dart';
 
 class MoreScreen extends StatelessWidget {
@@ -31,7 +32,12 @@ class MoreScreen extends StatelessWidget {
                 const SizedBox(width: 10),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AuthScreen(authType: AuthType.signUp)),
+                          (route) => false,
+                        );},
                   icon: const Icon(Icons.logout_outlined),
                   color: Colors.red,
                 ),

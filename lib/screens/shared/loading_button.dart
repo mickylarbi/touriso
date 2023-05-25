@@ -34,8 +34,8 @@ class LoadingButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           minimumSize: minimumSize ?? const Size.fromHeight(48),
-          backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
-          foregroundColor: foregroundColor,
+          // backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
+          // foregroundColor: foregroundColor,
           // padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           shape: shape ??
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
