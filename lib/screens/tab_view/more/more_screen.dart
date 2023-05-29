@@ -26,18 +26,24 @@ class MoreScreen extends StatelessWidget {
                       'John Doe',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text('johndoe@email.test'),
+                    Text(
+                      'johndoe@email.test',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
                   ],
                 ),
                 const SizedBox(width: 10),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AuthScreen(authType: AuthType.signUp)),
-                          (route) => false,
-                        );},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const AuthScreen(authType: AuthType.signUp)),
+                      (route) => false,
+                    );
+                  },
                   icon: const Icon(Icons.logout_outlined),
                   color: Colors.red,
                 ),

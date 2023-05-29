@@ -47,19 +47,19 @@ class _TabViewState extends State<TabView> {
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.pending_outlined),
-                label: 'Pending',
-                activeIcon: Icon(Icons.pending),
+                icon: Icon(Icons.home_outlined),
+                label: 'Home',
+                activeIcon: Icon(Icons.home_rounded),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.book_outlined),
-                label: 'Book',
-                activeIcon: Icon(Icons.book),
+                icon: Icon(Icons.search_outlined),
+                label: 'Explore',
+                activeIcon: Icon(Icons.search_rounded),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.history_outlined),
-                label: 'History',
-                activeIcon: Icon(Icons.history),
+                icon: Icon(Icons.tour_rounded),
+                label: 'Tours',
+                activeIcon: Icon(Icons.tour_rounded),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.chat_bubble_outline_rounded),
@@ -84,4 +84,26 @@ class _TabViewState extends State<TabView> {
 
     super.dispose();
   }
+
+  ///places
+  ///packages (transport, accommodation, feeding)
+  ///packages can have multiple locations/places
+  ///region
+  ///
+  ///
+  ///models
+  ///tourist site
+  /// - name
+  /// - city/town/village
+  /// - region
+  /// - description
+  ///
+  ///package
+  /// - title
+  /// - tourist site
+  /// - transport
+  /// - accommodation
+  /// - feeding
+  /// - price
+  /// - duration
 }
