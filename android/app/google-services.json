@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "437881507377",
+    "project_id": "touriso-ea0",
+    "storage_bucket": "touriso-ea0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437881507377:android:cb3f4229415f13bd574f10",
+        "android_client_info": {
+          "package_name": "com.example.touriso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437881507377-5vq2hkac88hjsqcfg8et2c27fg0qmkl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrrSkkxjA2EbV2dzXpxUp8aoIy9e6oaDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437881507377-5vq2hkac88hjsqcfg8et2c27fg0qmkl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

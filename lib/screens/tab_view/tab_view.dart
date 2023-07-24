@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:touriso/screens/tab_view/booking/booking_screen.dart';
-import 'package:touriso/screens/tab_view/chat/chat_screen.dart';
-import 'package:touriso/screens/tab_view/history/history_screen.dart';
-import 'package:touriso/screens/tab_view/more/more_screen.dart';
-import 'package:touriso/screens/tab_view/pending/pending_screen.dart';
 
 class TabView extends StatefulWidget {
-  const TabView({super.key});
+  const TabView({super.key, required this.child});
+
+  final Widget child;
 
   @override
   State<TabView> createState() => _TabViewState();
@@ -19,19 +16,7 @@ class _TabViewState extends State<TabView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: PageView(
-          controller: pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            PendingScreen(),
-            BookingScreen(),
-            HistoryScreen(),
-            ChatScreen(),
-            MoreScreen(),
-          ],
-        ),
-      ),
+      body: widget.child,
       bottomNavigationBar: ValueListenableBuilder<int>(
         valueListenable: currentIndexNotifier,
         builder: (context, value, child) {
