@@ -4,6 +4,7 @@ import 'package:touriso/screens/shared/custom_text_form_field.dart';
 import 'package:touriso/screens/shared/custom_text_span.dart';
 import 'package:touriso/screens/shared/loading_button.dart';
 import 'package:touriso/utils/constants.dart';
+import 'package:touriso/utils/dimensions.dart';
 
 class AuthScreen extends StatefulWidget {
   final AuthType authType;

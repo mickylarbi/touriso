@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:touriso/utils/colors.dart';
 
 class CustomTextSpan extends StatelessWidget {
   final String firstText;
@@ -17,15 +18,19 @@ class CustomTextSpan extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(firstText),
+        Text('$firstText '),
         TextButton(
           onPressed: onPressed,
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            padding: const EdgeInsets.all(0),
+          ),
           child: Text(
             secondText,
-            style: TextStyle(
+            style: const TextStyle(
               decoration: TextDecoration.underline,
               // fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
+              color: primaryColor,
             ),
           ),
         )

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 TextTheme textTheme(context) => Theme.of(context).textTheme;
 
-TextStyle bodyLarge(context) => textTheme(context).bodyLarge!;
+TextStyle bodyLarge(context) =>
+    bodyMedium(context).copyWith(fontSize: bodyMedium(context).fontSize! + 3);
 TextStyle bodyMedium(context) => textTheme(context).bodyMedium!;
 TextStyle bodySmall(context) => textTheme(context).bodySmall!;
 

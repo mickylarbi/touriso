@@ -1,41 +1,77 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:touriso/utils/colors.dart';
+import 'package:touriso/utils/text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      this.prefixIcon,
-      this.keyboardType});
+  const CustomTextFormField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.prefixIcon,
+    this.keyboardType,
+    this.maxLines,
+    this.minLines,
+    this.textAlign,
+    this.prefix,
+    this.suffix,
+    this.initialValue,
+  });
 
   final TextEditingController controller;
   final String hintText;
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
+  final int? maxLines;
+  final int? minLines;
+  final TextAlign? textAlign;
+  final Widget? prefix;
+  final Widget? suffix;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 48,
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(color: Colors.grey),
-          ),
-          prefixIcon: prefixIcon,
+    return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      style: bodyMedium(context),
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.grey),
+        isDense: true,
+        contentPadding: const EdgeInsets.all(12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey[200]!),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey[100]!),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey[300]!),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
+        prefixIcon: prefixIcon,
+        prefixIconColor: Colors.grey,
+        prefix: prefix,
+        suffix: suffix,
       ),
+      maxLines: maxLines,
+      minLines: minLines,
+      textAlign: textAlign ?? TextAlign.start,
+      initialValue: initialValue,
     );
   }
 }
-
 
 class PasswordTextFormField extends StatefulWidget {
   final String? hintText;
@@ -58,29 +94,47 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
     return ValueListenableBuilder<bool>(
       valueListenable: obscureText,
       builder: (context, value, child) {
-        return SizedBox(
-          height: 48,
-          child: TextFormField(
-            controller: widget.controller,
-            obscureText: value,
-            decoration: InputDecoration(
+        return TextFormField(
+          controller: widget.controller,
+          obscureText: value,
+          style: bodyMedium(context),
+          decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: const TextStyle(color: Colors.grey),
+              isDense: true,
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey[200]!),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey[100]!),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey[300]!),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Colors.red),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.grey),
               ),
               prefixIcon: const Icon(Icons.lock_outline_rounded),
+              prefixIconColor: Colors.grey,
               suffixIcon: IconButton(
-                icon: Icon(value ? Icons.visibility_off : Icons.visibility),
+                icon: Icon(value
+                    ? Icons.visibility_rounded
+                    : Icons.visibility_off_rounded),
                 onPressed: () {
                   obscureText.value = !obscureText.value;
                 },
               ),
-            ),
-          ),
+              suffixIconColor: primaryColor),
         );
       },
     );
@@ -90,5 +144,125 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
   void dispose() {
     obscureText.dispose();
     super.dispose();
+  }
+}
+
+class EditDetailsTextFormField extends StatelessWidget {
+  const EditDetailsTextFormField({
+    super.key,
+    required this.controller,
+    required this.labelText,
+    this.maxLines,
+    this.minLines,
+    this.prefix,
+    this.suffix,
+    this.keyboardType,
+    this.prefixIcon,
+  });
+
+  final TextEditingController controller;
+  final String labelText;
+  final int? maxLines;
+  final int? minLines;
+  final Widget? prefix;
+  final Widget? suffix;
+  final TextInputType? keyboardType;
+  final Widget? prefixIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(labelText, style: bodySmall(context)),
+        CustomTextFormField(
+          controller: controller,
+          hintText: '',
+          keyboardType: keyboardType,
+          maxLines: maxLines,
+          minLines: minLines,
+          prefixIcon: prefixIcon,
+          prefix: prefix,
+          suffix: suffix,
+        ),
+      ],
+    );
+  }
+}
+
+class GeoLocationTextFields extends StatefulWidget {
+  const GeoLocationTextFields({super.key, required this.geoLocationNotifier});
+  final ValueNotifier<GeoPoint?> geoLocationNotifier;
+
+  @override
+  State<GeoLocationTextFields> createState() => _GeolocationTextFieldsState();
+}
+
+class _GeolocationTextFieldsState extends State<GeoLocationTextFields> {
+  TextEditingController latitudeController = TextEditingController();
+  TextEditingController longitudeController = TextEditingController();
+
+  setLocation() {
+    if (double.tryParse(latitudeController.text.trim()) == null ||
+        double.tryParse(longitudeController.text.trim()) == null) {
+      widget.geoLocationNotifier.value = null;
+    } else {
+      widget.geoLocationNotifier.value = GeoPoint(
+        double.parse(latitudeController.text.trim()),
+        double.parse(longitudeController.text.trim()),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.geoLocationNotifier.value != null) {
+      latitudeController.text =
+          widget.geoLocationNotifier.value!.latitude.toString();
+      longitudeController.text =
+          widget.geoLocationNotifier.value!.longitude.toString();
+    }
+
+    latitudeController.addListener(() {
+      setLocation();
+    });
+    longitudeController.addListener(() {
+      setLocation();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Geo location', style: bodySmall(context)),
+        Row(
+          children: [
+            Expanded(
+              child: CustomTextFormField(
+                controller: latitudeController,
+                hintText: 'Latitude',
+                textAlign: TextAlign.right,
+                keyboardType: TextInputType.number,
+                suffix: const Text('°'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: CustomTextFormField(
+                controller: longitudeController,
+                hintText: 'Longitude',
+                textAlign: TextAlign.right,
+                keyboardType: TextInputType.number,
+                suffix: const Text('°'),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

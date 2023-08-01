@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437881507377:android:cb3f4229415f13bd574f10",
+        "mobilesdk_app_id": "1:437881507377:android:bbdaddd18a7818f2574f10",
         "android_client_info": {
           "package_name": "com.example.touriso"
         }
@@ -29,6 +29,13 @@
             {
               "client_id": "437881507377-5vq2hkac88hjsqcfg8et2c27fg0qmkl1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "437881507377-4ltnnchtbbrfr6ilu09iglo1770l3f4o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.touriso.RunnerTests"
+              }
             }
           ]
         }

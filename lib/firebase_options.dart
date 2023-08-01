@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -45,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBLWZ0waPuUdDK5tN6UQ19659IO5RDoRGw',
-    appId: '1:437881507377:web:c6a9433e937a9a77574f10',
+    appId: '1:437881507377:web:d568fc4e2921dc02574f10',
     messagingSenderId: '437881507377',
     projectId: 'touriso-ea0',
     authDomain: 'touriso-ea0.firebaseapp.com',
@@ -54,7 +57,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDrrSkkxjA2EbV2dzXpxUp8aoIy9e6oaDY',
-    appId: '1:437881507377:android:cb3f4229415f13bd574f10',
+    appId: '1:437881507377:android:bbdaddd18a7818f2574f10',
     messagingSenderId: '437881507377',
     projectId: 'touriso-ea0',
     storageBucket: 'touriso-ea0.appspot.com',
@@ -62,21 +65,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCZMMwvbAFaUYzz95AInWEnWdR66t5LeV8',
-    appId: '1:437881507377:ios:d5e30b1fce190930574f10',
+    appId: '1:437881507377:ios:52f757cc3681267f574f10',
     messagingSenderId: '437881507377',
     projectId: 'touriso-ea0',
     storageBucket: 'touriso-ea0.appspot.com',
     iosClientId: '437881507377-7neuval0ftdim7rktk7v12n1ijr7ds2v.apps.googleusercontent.com',
     iosBundleId: 'com.example.touriso',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCZMMwvbAFaUYzz95AInWEnWdR66t5LeV8',
-    appId: '1:437881507377:ios:71087585d5ff680a574f10',
-    messagingSenderId: '437881507377',
-    projectId: 'touriso-ea0',
-    storageBucket: 'touriso-ea0.appspot.com',
-    iosClientId: '437881507377-4ltnnchtbbrfr6ilu09iglo1770l3f4o.apps.googleusercontent.com',
-    iosBundleId: 'com.example.touriso.RunnerTests',
   );
 }

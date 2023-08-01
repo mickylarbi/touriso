@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-Future<T?> showLoadingDialog<T>(BuildContext context, {String? message}) {
-  return showDialog(
+void showLoadingDialog(BuildContext context, {String? message}) {
+  showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
@@ -15,16 +15,16 @@ Future<T?> showLoadingDialog<T>(BuildContext context, {String? message}) {
               ],
             ),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           ));
 }
 
-Future<T?> showAlertDialog<T>(BuildContext context,
+void showAlertDialog(BuildContext context,
     {String message = 'Something went wrong',
     bool showIcon = true,
     IconData icon = Icons.warning_amber_rounded,
     Color iconColor = Colors.red}) {
-  return showDialog(
+  showDialog(
       context: context,
       builder: (context) => AlertDialog(
             title: showIcon
@@ -40,22 +40,20 @@ Future<T?> showAlertDialog<T>(BuildContext context,
               overflow: TextOverflow.ellipsis,
               maxLines: 5,
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            actionsPadding: const EdgeInsets.symmetric(horizontal: 24),
           ));
 }
 
-Future<T?> showConfirmationDialog<T>(
-    BuildContext context, //TODO: correct styles
-    {String? message,
-    required Function confirmFunction}) {
-  return showDialog(
+void showConfirmationDialog(BuildContext context,
+    {String? message, required Function confirmFunction}) {
+  showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Row(
+      title: const Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: const [
+        children: [
           Icon(Icons.info_outline, color: Colors.amber),
         ],
       ),
@@ -65,43 +63,19 @@ Future<T?> showConfirmationDialog<T>(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text(
-            'NO',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.bold,
-                letterSpacing: .5),
-          ),
-          style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all(Colors.blueGrey.withOpacity(.15)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-            ),
-          ),
+          child: const Text('NO'),
         ),
-        TextButton(
+        FilledButton(
           onPressed: () {
             Navigator.pop(context);
             confirmFunction();
           },
-          child: const Text(
-            'YES',
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                letterSpacing: .5),
-          ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-            ),
-          ),
+          child: const Text('YES'),
         ),
       ],
+      actionsAlignment: MainAxisAlignment.center,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      actionsPadding: const EdgeInsets.symmetric(horizontal: 14),
+      actionsPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     ),
   );
 }
@@ -121,6 +95,24 @@ void showCustomBottomSheet(BuildContext context, List<Widget> children) {
           child: Column(mainAxisSize: MainAxisSize.min, children: children),
         ),
       ),
+    ),
+  );
+}
+
+Future<T?> showFormDialog<T>(
+  BuildContext context,
+  Widget form,
+) {
+  return showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      content: SizedBox(
+          width: 400,
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: form,
+          )),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
     ),
   );
 }
