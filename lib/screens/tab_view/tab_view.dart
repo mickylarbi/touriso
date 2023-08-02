@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key, required this.child});
@@ -10,13 +11,12 @@ class TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<TabView> {
-  final PageController pageController = PageController();
   ValueNotifier<int> currentIndexNotifier = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.child,
+      body: SafeArea(child: widget.child),
       bottomNavigationBar: ValueListenableBuilder<int>(
         valueListenable: currentIndexNotifier,
         builder: (context, value, child) {
@@ -25,10 +25,8 @@ class _TabViewState extends State<TabView> {
             type: BottomNavigationBarType.fixed,
             currentIndex: value,
             onTap: (index) {
-              if (index != currentIndexNotifier.value) {
-                currentIndexNotifier.value = index;
-                pageController.jumpToPage(currentIndexNotifier.value);
-              }
+              currentIndexNotifier.value = index;
+              context.go(pages[index]);
             },
             items: const [
               BottomNavigationBarItem(
@@ -47,14 +45,9 @@ class _TabViewState extends State<TabView> {
                 activeIcon: Icon(Icons.tour_rounded),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble_outline_rounded),
-                label: 'Chat',
-                activeIcon: Icon(Icons.chat_bubble_rounded),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'More',
-                activeIcon: Icon(Icons.settings),
+                icon: Icon(Icons.person_outline_rounded),
+                label: 'Profile',
+                activeIcon: Icon(Icons.person_rounded),
               ),
             ],
           );
@@ -65,7 +58,7 @@ class _TabViewState extends State<TabView> {
 
   @override
   void dispose() {
-    pageController.dispose();
+    currentIndexNotifier.dispose();
 
     super.dispose();
   }
@@ -92,3 +85,5 @@ class _TabViewState extends State<TabView> {
   /// - price
   /// - duration
 }
+
+List<String> pages = ['/', '/explore', '/trips', '/profile'];

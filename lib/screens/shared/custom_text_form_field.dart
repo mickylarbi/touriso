@@ -6,65 +6,73 @@ import 'package:touriso/utils/text_styles.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
+    this.autoFocus = false,
     required this.controller,
+    this.focusNode,
     required this.hintText,
-    this.prefixIcon,
     this.keyboardType,
     this.maxLines,
     this.minLines,
     this.textAlign,
     this.prefix,
+    this.prefixIcon,
     this.suffix,
+    this.suffixIcon,
     this.initialValue,
   });
 
+  final bool autoFocus;
   final TextEditingController controller;
+  final FocusNode? focusNode;
   final String hintText;
-  final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final int? maxLines;
   final int? minLines;
   final TextAlign? textAlign;
   final Widget? prefix;
+  final Widget? prefixIcon;
   final Widget? suffix;
+  final Widget? suffixIcon;
   final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: autoFocus,
       controller: controller,
+      focusNode: focusNode,
       keyboardType: keyboardType,
       style: bodyMedium(context),
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.grey),
-        isDense: true,
-        contentPadding: const EdgeInsets.all(12),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.grey[200]!),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.grey[100]!),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.grey[300]!),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.grey),
-        ),
-        prefixIcon: prefixIcon,
-        prefixIconColor: Colors.grey,
-        prefix: prefix,
-        suffix: suffix,
-      ),
+          hintText: hintText,
+          hintStyle: const TextStyle(color: Colors.grey),
+          isDense: true,
+          contentPadding: const EdgeInsets.all(12),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.grey[200]!),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.grey[100]!),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Colors.red),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Colors.grey),
+          ),
+          prefixIcon: prefixIcon,
+          prefixIconColor: Colors.grey,
+          prefix: prefix,
+          suffix: suffix,
+          suffixIcon: suffixIcon),
       maxLines: maxLines,
       minLines: minLines,
       textAlign: textAlign ?? TextAlign.start,

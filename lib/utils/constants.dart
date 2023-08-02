@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-
 String kLogoTag = 'logoTag';
+String searchHeroTag = 'search';
+String ghanaCedi = 'GH₵';
 
 Color kBackgroundColor = const Color(0xFFF9F9F9);
 
