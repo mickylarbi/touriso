@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:touriso/models/activity.dart';
 import 'package:touriso/models/site.dart';
-import 'package:touriso/screens/tab_view/search/activity_details_page.dart';
+import 'package:touriso/screens/shared/activity_details_page.dart';
 import 'package:touriso/screens/tab_view/search/site_details_page.dart';
 import 'package:touriso/utils/constants.dart';
 import 'package:touriso/utils/firebase_helper.dart';
@@ -37,7 +37,7 @@ class _ExplorePageState extends State<ExplorePage> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  context.push('/search');
+                  context.push('/explore/search');
                 },
                 child: Hero(
                   tag: searchHeroTag,
@@ -109,7 +109,7 @@ class _ExplorePageState extends State<ExplorePage> {
               //TODO: try pageview with viewport fraction things
             ],
           ),
-        )
+        ),
       ],
     );
   }

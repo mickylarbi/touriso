@@ -7,6 +7,7 @@ import 'package:touriso/screens/tab_view/more/more_page.dart';
 import 'package:touriso/screens/tab_view/search/explore_page.dart';
 import 'package:touriso/screens/tab_view/search/search_screen.dart';
 import 'package:touriso/screens/tab_view/tab_view.dart';
+import 'package:touriso/screens/tab_view/trips/booking_details_page.dart';
 import 'package:touriso/screens/tab_view/trips/trips_page.dart';
 
 GoRouter goRouter = GoRouter(
@@ -37,14 +38,14 @@ GoRouter goRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/explore',
-              builder: (context, state) => const ExplorePage(),
-            ),
-            GoRoute(
-              path: '/search',
-              builder: (context, state) => const SearchScreen(),
-            ),
-
+                path: '/explore',
+                builder: (context, state) => const ExplorePage(),
+                routes: [
+                  GoRoute(
+                    path: 'search',
+                    builder: (context, state) => const SearchScreen(),
+                  ),
+                ]),
           ],
         ),
         StatefulShellBranch(
@@ -52,6 +53,14 @@ GoRouter goRouter = GoRouter(
             GoRoute(
               path: '/trips',
               builder: (context, state) => const TripsPage(),
+              routes: [
+                GoRoute(
+                  path: 'booking_details/:bookingId',
+                  builder: (context, state) => BookingDetailsPage(
+                    bookingId: state.pathParameters['bookingId']!,
+                  ),
+                )
+              ],
             ),
           ],
         ),

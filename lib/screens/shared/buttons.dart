@@ -136,3 +136,18 @@ class StatefulLoadingButton extends StatelessWidget {
     );
   }
 }
+
+
+class ReloadButton extends StatelessWidget {
+  const ReloadButton({super.key, this.onPressed});
+  final Function()? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: const Icon(Icons.refresh),
+      label: const Text('Reload'),
+    );
+  }
+}

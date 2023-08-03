@@ -200,7 +200,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         return hits.isEmpty
                             ? const Center(
                                 child: Text(
-                                  'No sites found',
+                                  'No locations found',
                                   style: TextStyle(color: Colors.grey),
                                 ),
                               )

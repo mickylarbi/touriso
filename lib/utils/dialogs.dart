@@ -46,9 +46,9 @@ void showAlertDialog(BuildContext context,
           ));
 }
 
-void showConfirmationDialog(BuildContext context,
+Future<T?> showConfirmationDialog<T>(BuildContext context,
     {String? message, required Function confirmFunction}) {
-  showDialog(
+  return showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: const Row(

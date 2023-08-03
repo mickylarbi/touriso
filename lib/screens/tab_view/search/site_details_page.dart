@@ -34,7 +34,13 @@ class SiteDetailsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Location:', style: labelMedium(context)),
+                    Text(
+                      'Location:',
+                      style: labelMedium(context).copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Text(site.location),
                     const SizedBox(height: 20),
                     Center(
@@ -107,7 +113,10 @@ class SiteDetailsPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(24),
-                child: Text(site.description),
+                child: Text(
+                  site.description,
+                  style: const TextStyle(color: Colors.grey),
+                ),
               ),
             ],
           ),
