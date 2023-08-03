@@ -3,11 +3,12 @@ import 'package:touriso/screens/auth/auth_shell.dart';
 import 'package:touriso/screens/auth/login_screen.dart';
 import 'package:touriso/screens/auth/register_screen.dart';
 import 'package:touriso/screens/tab_view/home/home_page.dart';
-import 'package:touriso/screens/tab_view/more/more_page.dart';
+import 'package:touriso/screens/tab_view/more/profile_page.dart';
 import 'package:touriso/screens/tab_view/search/explore_page.dart';
 import 'package:touriso/screens/tab_view/search/search_screen.dart';
 import 'package:touriso/screens/tab_view/tab_view.dart';
 import 'package:touriso/screens/tab_view/trips/booking_details_page.dart';
+import 'package:touriso/screens/tab_view/trips/booking_history_page.dart';
 import 'package:touriso/screens/tab_view/trips/trips_page.dart';
 
 GoRouter goRouter = GoRouter(
@@ -59,7 +60,19 @@ GoRouter goRouter = GoRouter(
                   builder: (context, state) => BookingDetailsPage(
                     bookingId: state.pathParameters['bookingId']!,
                   ),
-                )
+                ),
+                GoRoute(
+                  path: 'history',
+                  builder: (context, state) => const BookingHistory(),
+                  routes: [
+                    GoRoute(
+                      path: 'booking_details/:bookingId',
+                      builder: (context, state) => BookingDetailsPage(
+                        bookingId: state.pathParameters['bookingId']!,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],

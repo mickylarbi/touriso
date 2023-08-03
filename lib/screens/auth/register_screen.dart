@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:touriso/models/custom_user.dart';
+import 'package:touriso/models/client.dart';
 import 'package:touriso/screens/shared/buttons.dart';
 import 'package:touriso/screens/shared/custom_text_form_field.dart';
 import 'package:touriso/screens/shared/custom_text_span.dart';
@@ -151,7 +151,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 try {
                   await register();
 
-                  context.go('/');
+                  context.go('/explore');
                 } catch (e) {
                   print(e);
                   showAlertDialog(context);

@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
 
                   // ignore: use_build_context_synchronously
-                  context.go('/');
+                  context.go('/explore');
                 } catch (e) {
                   print(e);
                   showAlertDialog(context);

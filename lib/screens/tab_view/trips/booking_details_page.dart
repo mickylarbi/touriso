@@ -119,39 +119,39 @@ class BookingDetailsPage extends StatelessWidget {
                       ),
                       Text(booking.numberOfPeople.toString()),
                       const Divider(height: 48),
-                      TextButton.icon(
-                        onPressed: () {
-                          showConfirmationDialog(
-                            context,
-                            message:
-                                'Cancel booking?\nThis action is irreversible',
-                            confirmFunction: () async {
-                              showLoadingDialog(context);
-                              try {
-                                await bookingsCollection
-                                    .doc(bookingId)
-                                    .delete();
+                      if (DateTime.now().isBefore(booking.dateTime))
+                        TextButton.icon(
+                          onPressed: () {
+                            showConfirmationDialog(
+                              context,
+                              message:
+                                  'Cancel booking?\nThis action is irreversible',
+                              confirmFunction: () async {
+                                showLoadingDialog(context);
+                                try {
+                                  await bookingsCollection
+                                      .doc(bookingId)
+                                      .delete();
 
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
-
-                                context.go('/trips');
-                              } catch (e) {
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
-                                showAlertDialog(context);
-                              }
-                            },
-                          );
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.red.withOpacity(.2),
-                          foregroundColor: Colors.red,
-                          padding: const EdgeInsets.all(12),
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+                                  context.pop(true);
+                                } catch (e) {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+                                  showAlertDialog(context);
+                                }
+                              },
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.red.withOpacity(.2),
+                            foregroundColor: Colors.red,
+                            padding: const EdgeInsets.all(12),
+                          ),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Cancel booking'),
                         ),
-                        icon: const Icon(Icons.delete),
-                        label: const Text('Cancel booking'),
-                      ),
                     ],
                   ),
                 )
@@ -159,9 +159,7 @@ class BookingDetailsPage extends StatelessWidget {
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
+          return const Center(child: CircularProgressIndicator.adaptive());
         },
       );
     });

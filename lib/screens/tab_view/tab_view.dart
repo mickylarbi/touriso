@@ -29,11 +29,11 @@ class _TabViewState extends State<TabView> {
               context.go(pages[index]);
             },
             items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-                activeIcon: Icon(Icons.home_rounded),
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.home_outlined),
+              //   label: 'Home',
+              //   activeIcon: Icon(Icons.home_rounded),
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.search_outlined),
                 label: 'Explore',
@@ -44,11 +44,11 @@ class _TabViewState extends State<TabView> {
                 label: 'Tours',
                 activeIcon: Icon(Icons.tour_rounded),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_rounded),
-                label: 'Profile',
-                activeIcon: Icon(Icons.person_rounded),
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.person_outline_rounded),
+              //   label: 'Profile',
+              //   activeIcon: Icon(Icons.person_rounded),
+              // ),
             ],
           );
         },
@@ -86,4 +86,4 @@ class _TabViewState extends State<TabView> {
   /// - duration
 }
 
-List<String> pages = ['/', '/explore', '/trips', '/profile'];
+List<String> pages = ['/explore', '/trips'];

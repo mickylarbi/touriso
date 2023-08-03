@@ -13,9 +13,17 @@ class TripsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        const SliverAppBar(
-          title: Text('Bookings'),
+        SliverAppBar(
+          title: const Text('Bookings'),
           centerTitle: false,
+          actions: [
+            IconButton(
+              onPressed: () {
+                context.push('/trips/history');
+              },
+              icon: const Icon(Icons.history),
+            )
+          ],
         ),
         SliverToBoxAdapter(
           child: StatefulBuilder(builder: (context, setState) {
@@ -35,28 +43,34 @@ class TripsPage extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.done) {
                   List<Booking> bookings = snapshot.data!;
 
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    primary: false,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: bookings.length,
-                    separatorBuilder: (context, index) => const Divider(),
-                    itemBuilder: (context, index) {
-                      Booking booking = bookings[index];
-
-                      return ListTile(
-                        title: Text(booking.id),
-                        subtitle: Text(
-                            DateFormat.yMMMMEEEEd().format(booking.dateTime)),
-                        trailing: const Icon(
-                          Icons.chevron_right_rounded,
-                          color: Colors.grey,
-                        ),
-                        onTap: () {
-                          context.push('/trips/booking_details/${booking.id}');
-                        },
-                      );
+                  return RefreshIndicator.adaptive(
+                    onRefresh: () async {
+                      setState(() {});
                     },
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      primary: false,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: bookings.length,
+                      separatorBuilder: (context, index) => const Divider(),
+                      itemBuilder: (context, index) {
+                        Booking booking = bookings[index];
+
+                        return ListTile(
+                          title: Text(booking.id),
+                          subtitle: Text(
+                              DateFormat.yMMMMEEEEd().format(booking.dateTime)),
+                          trailing: const Icon(
+                            Icons.chevron_right_rounded,
+                            color: Colors.grey,
+                          ),
+                          onTap: () {
+                            context
+                                .push('/trips/booking_details/${booking.id}');
+                          },
+                        );
+                      },
+                    ),
                   );
                 }
 
