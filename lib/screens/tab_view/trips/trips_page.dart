@@ -85,8 +85,10 @@ class TripsPage extends StatelessWidget {
   }
 
   Future<List<Booking>> getBookings() async {
-    QuerySnapshot snapshot =
-        await bookingsCollection.where('clientId', isEqualTo: uid).get();
+    QuerySnapshot snapshot = await bookingsCollection
+        .where('clientId', isEqualTo: uid)
+        .where('dateTime', isGreaterThan: DateTime.now())
+        .get();
 
     List<Booking> bookings = snapshot.docs
         .map(
