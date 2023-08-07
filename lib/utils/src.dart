@@ -29,7 +29,7 @@ class Src extends StatelessWidget {
             foregroundColor: primaryColor,
             shape: const RoundedRectangleBorder(
                 side: BorderSide(color: primaryColor)),
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
         filledButtonTheme: FilledButtonThemeData(
@@ -38,16 +38,17 @@ class Src extends StatelessWidget {
             foregroundColor: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: primaryColor,
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
+        bottomAppBarTheme: BottomAppBarTheme(color: primaryColor),
         textSelectionTheme:
             const TextSelectionThemeData(cursorColor: Colors.black),
         textTheme: GoogleFonts.robotoTextTheme(),

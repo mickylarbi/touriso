@@ -19,6 +19,8 @@ class CustomTextFormField extends StatelessWidget {
     this.suffix,
     this.suffixIcon,
     this.initialValue,
+    this.onFieldSubmitted,
+    this.onChanged,
   });
 
   final bool autoFocus;
@@ -34,6 +36,8 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffix;
   final Widget? suffixIcon;
   final String? initialValue;
+  final void Function(String)? onFieldSubmitted;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,8 @@ class CustomTextFormField extends StatelessWidget {
       minLines: minLines,
       textAlign: textAlign ?? TextAlign.start,
       initialValue: initialValue,
+      onFieldSubmitted: onFieldSubmitted,
+      onChanged: onChanged,
     );
   }
 }

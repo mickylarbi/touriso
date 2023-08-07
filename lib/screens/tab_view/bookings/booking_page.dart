@@ -55,7 +55,7 @@ class _BookingPageState extends State<BookingPage> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        const SliverAppBar(title: Text('Book Trip'), floating: true),
+        const SliverAppBar(title: Text('Book Trip'), pinned: true),
         SliverToBoxAdapter(
           child: ListView(
             shrinkWrap: true,

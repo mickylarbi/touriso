@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:touriso/screens/shared/buttons.dart';
@@ -92,6 +93,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // ignore: use_build_context_synchronously
                   context.go('/explore');
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    print('No user found for that email.');
+                  } else if (e.code == 'wrong-password') {
+                    print('Wrong password provided for that user.');
+                  }
                 } catch (e) {
                   print(e);
                   showAlertDialog(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:touriso/utils/colors.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key, required this.child});
@@ -21,13 +22,17 @@ class _TabViewState extends State<TabView> {
         valueListenable: currentIndexNotifier,
         builder: (context, value, child) {
           return BottomNavigationBar(
-            selectedItemColor: Theme.of(context).primaryColor,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedItemColor: primaryColor,
             type: BottomNavigationBarType.fixed,
             currentIndex: value,
             onTap: (index) {
               currentIndexNotifier.value = index;
               context.go(pages[index]);
             },
+            selectedIconTheme: const IconThemeData(color: primaryColor),
+            selectedLabelStyle: const TextStyle(color: primaryColor),
             items: const [
               // BottomNavigationBarItem(
               //   icon: Icon(Icons.home_outlined),
@@ -40,15 +45,20 @@ class _TabViewState extends State<TabView> {
                 activeIcon: Icon(Icons.search_rounded),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.tour_rounded),
-                label: 'Tours',
-                activeIcon: Icon(Icons.tour_rounded),
+                icon: Icon(Icons.list_outlined),
+                label: 'Bookings',
+                activeIcon: Icon(Icons.list_rounded),
               ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.person_outline_rounded),
-              //   label: 'Profile',
-              //   activeIcon: Icon(Icons.person_rounded),
-              // ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.message_outlined),
+                label: 'Chat',
+                activeIcon: Icon(Icons.message_rounded),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline_rounded),
+                label: 'Profile',
+                activeIcon: Icon(Icons.person_rounded),
+              ),
             ],
           );
         },
@@ -86,4 +96,4 @@ class _TabViewState extends State<TabView> {
   /// - duration
 }
 
-List<String> pages = ['/explore', '/trips'];
+List<String> pages = ['/explore', '/trips', '/chat', '/profile'];

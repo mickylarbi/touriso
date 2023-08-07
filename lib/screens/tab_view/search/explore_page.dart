@@ -68,46 +68,51 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
         ),
         Expanded(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'Popular sites',
-                  style: Theme.of(context).textTheme.titleLarge,
+          child: RefreshIndicator.adaptive(
+            onRefresh: () async {
+              setState(() {});
+            },
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Popular sites',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 300,
-                child: sitesCarousel(),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'Popular activities',
-                  style: Theme.of(context).textTheme.titleLarge,
+                SizedBox(
+                  height: 300,
+                  child: sitesCarousel(),
                 ),
-              ),
-              SizedBox(
-                height: 300,
-                child: activitiesCarousel(),
-              ),
-              // SizedBox(
-              //   height: 200,
-              //   child: PageView.builder(
-              //     controller: PageController(viewportFraction: 0.7),
-              //     itemCount: Colors.primaries.length,
-              //     itemBuilder: (context, index) => Container(
-              //       //  width: 200,
-              //       decoration: BoxDecoration(
-              //         color: Colors.primaries[index],
-              //         borderRadius: BorderRadius.circular(20),
-              //       ),
-              //     ),
-              //   ),
-              // )
-              //TODO: try pageview with viewport fraction things
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Popular activities',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                SizedBox(
+                  height: 300,
+                  child: activitiesCarousel(),
+                ),
+                // SizedBox(
+                //   height: 200,
+                //   child: PageView.builder(
+                //     controller: PageController(viewportFraction: 0.7),
+                //     itemCount: Colors.primaries.length,
+                //     itemBuilder: (context, index) => Container(
+                //       //  width: 200,
+                //       decoration: BoxDecoration(
+                //         color: Colors.primaries[index],
+                //         borderRadius: BorderRadius.circular(20),
+                //       ),
+                //     ),
+                //   ),
+                // )
+                //TODO: try pageview with viewport fraction things
+              ],
+            ),
           ),
         ),
       ],

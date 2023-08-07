@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:touriso/models/activity.dart';
 import 'package:touriso/screens/shared/image_viewer.dart';
-import 'package:touriso/screens/tab_view/trips/booking_page.dart';
+import 'package:touriso/screens/tab_view/bookings/booking_page.dart';
 import 'package:touriso/utils/constants.dart';
 import 'package:touriso/utils/text_styles.dart';
 
@@ -15,7 +15,7 @@ class ActivityDetailsPage extends StatelessWidget {
       children: [
         CustomScrollView(
           slivers: [
-            SliverAppBar(title: Text(activity.name)),
+            SliverAppBar(title: Text(activity.name),pinned: true,),
             SliverList(
               delegate: SliverChildListDelegate(
                 [

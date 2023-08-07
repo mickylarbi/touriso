@@ -2,14 +2,16 @@ import 'package:go_router/go_router.dart';
 import 'package:touriso/screens/auth/auth_shell.dart';
 import 'package:touriso/screens/auth/login_screen.dart';
 import 'package:touriso/screens/auth/register_screen.dart';
+import 'package:touriso/screens/tab_view/chat/chat_page.dart';
 import 'package:touriso/screens/tab_view/home/home_page.dart';
-import 'package:touriso/screens/tab_view/more/profile_page.dart';
+import 'package:touriso/screens/tab_view/profile/profile_page.dart';
 import 'package:touriso/screens/tab_view/search/explore_page.dart';
 import 'package:touriso/screens/tab_view/search/search_screen.dart';
 import 'package:touriso/screens/tab_view/tab_view.dart';
-import 'package:touriso/screens/tab_view/trips/booking_details_page.dart';
-import 'package:touriso/screens/tab_view/trips/booking_history_page.dart';
-import 'package:touriso/screens/tab_view/trips/trips_page.dart';
+import 'package:touriso/screens/tab_view/bookings/booking_details_page.dart';
+import 'package:touriso/screens/tab_view/bookings/booking_history_page.dart';
+import 'package:touriso/screens/tab_view/bookings/bookings_list_page.dart';
+import 'package:touriso/utils/firebase_helper.dart';
 
 GoRouter goRouter = GoRouter(
   routes: [
@@ -39,21 +41,22 @@ GoRouter goRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-                path: '/explore',
-                builder: (context, state) => const ExplorePage(),
-                routes: [
-                  GoRoute(
-                    path: 'search',
-                    builder: (context, state) => const SearchScreen(),
-                  ),
-                ]),
+              path: '/explore',
+              builder: (context, state) => const ExplorePage(),
+              routes: [
+                GoRoute(
+                  path: 'search',
+                  builder: (context, state) => const SearchScreen(),
+                ),
+              ],
+            ),
           ],
         ),
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: '/trips',
-              builder: (context, state) => const TripsPage(),
+              builder: (context, state) => const BookingsListPage(),
               routes: [
                 GoRoute(
                   path: 'booking_details/:bookingId',
@@ -80,6 +83,14 @@ GoRouter goRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
+              path: '/chat',
+              builder: (context, state) => const ChatPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: '/profile',
               builder: (context, state) => const ProfilePage(),
             ),
@@ -90,5 +101,5 @@ GoRouter goRouter = GoRouter(
           TabView(child: navigationShell),
     ),
   ],
-  initialLocation: '/login',
+  initialLocation: auth.currentUser == null ? '/login' : '/explore',
 );

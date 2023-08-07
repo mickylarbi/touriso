@@ -18,13 +18,8 @@ class SiteDetailsPage extends StatelessWidget {
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
-          title: Text(
-            site.name,
-            // style: Theme.of(context)
-            //     .textTheme
-            //     .headlineSmall!
-            //     .copyWith(fontWeight: FontWeight.bold),
-          ),
+          title: Text(site.name),
+          pinned: true,
         ),
         SliverList(
           delegate: SliverChildListDelegate(

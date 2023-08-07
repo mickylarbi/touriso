@@ -152,6 +152,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   await register();
 
                   context.go('/explore');
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    showAlertDialog(context,
+                        message: 'The password provided is too weak.');
+                  } else if (e.code == 'email-already-in-use') {
+                    showAlertDialog(context,
+                        message: 'The account already exists for that email.');
+                  }
                 } catch (e) {
                   print(e);
                   showAlertDialog(context);
@@ -174,21 +182,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future register() async {
-    UserCredential credential = await auth.createUserWithEmailAndPassword(
+    await auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(), password: passwordController.text);
 
     if (pictureNotifier.value != null) {
-      await picturesRef(credential.user!.uid)
+      await picturesRef(uid)
           .putData(await pictureNotifier.value!.readAsBytes());
     }
 
-    await clientsCollection.doc(credential.user!.uid).set(
+    await clientsCollection.doc(uid).set(
           Client(
             firstName: firstNameController.text.trim(),
             otherNames: otherNamesController.text.trim(),
             email: emailController.text.trim(),
             pictureUrl: pictureNotifier.value != null
-                ? await picturesRef(credential.user!.uid).getDownloadURL()
+                ? await picturesRef(uid).getDownloadURL()
                 : null,
           ).toFirebase(),
         );

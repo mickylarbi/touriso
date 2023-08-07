@@ -29,6 +29,8 @@ class Client extends Equatable {
         'pictureUrl': pictureUrl,
       };
 
+  String get name => '$firstName $otherNames';
+  
   @override
   List<Object?> get props => [id, firstName, otherNames, email, pictureUrl];
 }
