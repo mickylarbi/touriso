@@ -86,18 +86,36 @@ class _LoginScreenState extends State<LoginScreen> {
               buttonEnabledNotifier: buttonEnabledNotifier,
               onPressed: () async {
                 try {
-                  await auth.signInWithEmailAndPassword(
-                    email: emailController.text.trim(),
-                    password: passwordController.text,
-                  );
+                  if ((await companiesCollection
+                          .where('email',
+                              isEqualTo: emailController.text.trim())
+                          .get())
+                      .docs
+                      .isNotEmpty) {
+                    showAlertDialog(
+                      context,
+                      message: 'Email already exists for an agent',
+                    );
+                  } else {
+                    await auth.signInWithEmailAndPassword(
+                      email: emailController.text.trim(),
+                      password: passwordController.text,
+                    );
 
-                  // ignore: use_build_context_synchronously
-                  context.go('/explore');
+                    // ignore: use_build_context_synchronously
+                    context.go('/explore');
+                  }
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
-                    print('No user found for that email.');
+                    showAlertDialog(
+                      context,
+                      message: 'No user found for that email.',
+                    );
                   } else if (e.code == 'wrong-password') {
-                    print('Wrong password provided for that user.');
+                    showAlertDialog(
+                      context,
+                      message: 'Wrong password provided for that user.',
+                    );
                   }
                 } catch (e) {
                   print(e);

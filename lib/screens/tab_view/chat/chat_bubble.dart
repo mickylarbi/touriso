@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:touriso/models/message.dart';
+import 'package:touriso/utils/firebase_helper.dart';
 import 'package:touriso/utils/text_styles.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
     super.key,
-    this.text,
-    this.name,
-    this.type,
+    required this.message,
   });
 
-  final String? text;
-  final String? name;
-  final bool? type;
+  final Message message;
 
   List<Widget> otherMessage(context) {
     return <Widget>[
@@ -19,7 +18,7 @@ class ChatBubble extends StatelessWidget {
         margin: const EdgeInsets.only(right: 16.0),
         child: CircleAvatar(
           backgroundColor: Colors.pink[900],
-          child: const Text('T'),
+          child: const Text('T', style: TextStyle(color: Colors.white)),
         ),
       ),
       Expanded(
@@ -27,12 +26,17 @@ class ChatBubble extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              name ?? "",
-              style: bodySmall(context).copyWith(fontWeight: FontWeight.bold),
+              'Touriso',
+              style: bodySmall(context).copyWith(
+                  fontWeight: FontWeight.bold, color: Colors.pink[900]),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: Text(text ?? ''),
+              margin: const EdgeInsets.symmetric(vertical: 5.0),
+              child: Text(message.content),
+            ),
+            Text(
+              timeago.format(message.dateTime),
+              style: bodySmall(context).copyWith(color: Colors.grey),
             ),
           ],
         ),
@@ -47,25 +51,25 @@ class ChatBubble extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Text(
-              name ?? '',
-              style: bodySmall(context).copyWith(fontWeight: FontWeight.bold),
+              'Me',
+              style: bodySmall(context)
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.blue),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: Text(text ?? ''),
+              margin: const EdgeInsets.symmetric(vertical: 5.0),
+              child: Text(message.content),
+            ),
+            Text(
+              timeago.format(message.dateTime),
+              style: bodySmall(context).copyWith(color: Colors.grey),
             ),
           ],
         ),
       ),
       Container(
         margin: const EdgeInsets.only(left: 16.0),
-        child: CircleAvatar(
-          child: Text(
-            name?[0] ?? '',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        child: const CircleAvatar(
+          child: Text('M', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
       ),
     ];
@@ -76,9 +80,11 @@ class ChatBubble extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: (type ?? false) ? myMessage(context) : otherMessage(context),
+        children: message.senderId == uid
+            ? myMessage(context)
+            : otherMessage(context),
       ),
     );
+    //TODO: add time ago things
   }
 }

@@ -13,6 +13,8 @@ CollectionReference clientsCollection = firestore.collection('clients');
 CollectionReference sitesCollection = firestore.collection('sites');
 CollectionReference activitiesCollection = firestore.collection('activities');
 CollectionReference bookingsCollection = firestore.collection('bookings');
+CollectionReference chatsCollection = firestore.collection('chats');
+DocumentReference chatDocument = chatsCollection.doc(uid);
 
 Reference logosRef(String companyId) => storage.ref('logos/$companyId');
 Reference picturesRef(String clientId) => storage.ref('pictures/$clientId');

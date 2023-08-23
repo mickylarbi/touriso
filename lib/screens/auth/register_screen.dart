@@ -154,11 +154,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   context.go('/explore');
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
-                    showAlertDialog(context,
-                        message: 'The password provided is too weak.');
+                    showAlertDialog(
+                      context,
+                      message: 'The password provided is too weak.',
+                    );
                   } else if (e.code == 'email-already-in-use') {
-                    showAlertDialog(context,
-                        message: 'The account already exists for that email.');
+                    showAlertDialog(
+                      context,
+                      message: 'An account already exists for that email.',
+                    );
                   }
                 } catch (e) {
                   print(e);

@@ -20,6 +20,7 @@ dependencies:
   image_picker: ^1.0.1
   intl: ^0.18.1
   speech_to_text: ^6.3.0
+  timeago: ^3.5.0
   url_launcher: ^6.1.12
 
 dev_dependencies:

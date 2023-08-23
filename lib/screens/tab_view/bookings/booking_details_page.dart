@@ -67,21 +67,18 @@ class BookingDetailsPage extends StatelessWidget {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
-                                    child: Hero(
-                                      tag: 'booking',
-                                      child: snapshot.data!.imageUrls.isEmpty
-                                          ? Container(
-                                              height: 100,
-                                              width: 100,
-                                              color: Colors.grey[300],
-                                            )
-                                          : Image.network(
-                                              snapshot.data!.imageUrls[0],
-                                              height: 100,
-                                              width: 100,
-                                              fit: BoxFit.cover,
-                                            ),
-                                    ),
+                                    child: snapshot.data!.imageUrls.isEmpty
+                                        ? Container(
+                                            height: 100,
+                                            width: 100,
+                                            color: Colors.grey[300],
+                                          )
+                                        : Image.network(
+                                            snapshot.data!.imageUrls[0],
+                                            height: 100,
+                                            width: 100,
+                                            fit: BoxFit.cover,
+                                          ),
                                   ),
                                   const SizedBox(width: 20),
                                   Column(

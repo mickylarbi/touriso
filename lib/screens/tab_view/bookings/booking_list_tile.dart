@@ -22,21 +22,18 @@ class BookingListTile extends StatelessWidget {
     return ListTile(
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Hero(
-          tag: 'booking',
-          child: activity.imageUrls.isEmpty
-              ? Container(
-                  height: 48,
-                  width: 48,
-                  color: Colors.grey[300],
-                )
-              : Image.network(
-                  activity.imageUrls[0],
-                  height: 48,
-                  width: 48,
-                  fit: BoxFit.cover,
-                ),
-        ),
+        child: activity.imageUrls.isEmpty
+            ? Container(
+                height: 48,
+                width: 48,
+                color: Colors.grey[300],
+              )
+            : Image.network(
+                activity.imageUrls[0],
+                height: 48,
+                width: 48,
+                fit: BoxFit.cover,
+              ),
       ),
       title: Text('${activity.name} at ${site.name}'),
       subtitle: Text(DateFormat.yMMMMEEEEd().format(booking.dateTime)),
