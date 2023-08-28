@@ -15,7 +15,10 @@ class ActivityDetailsPage extends StatelessWidget {
       children: [
         CustomScrollView(
           slivers: [
-            SliverAppBar(title: Text(activity.name),pinned: true,),
+            SliverAppBar(
+              title: Text(activity.name),
+              pinned: true,
+            ),
             SliverList(
               delegate: SliverChildListDelegate(
                 [
@@ -95,9 +98,12 @@ class ActivityDetailsPage extends StatelessWidget {
                       style: const TextStyle(color: Colors.grey),
                     ),
                   ),
-                  FutureBuilder(builder: (context, snapshot) {
-                    return Container();
-                  })
+                  FutureBuilder(
+                    future: Future(() {}),
+                    builder: (context, snapshot) {
+                      return Container();
+                    },
+                  )
                 ],
               ),
             ),
@@ -112,8 +118,7 @@ class ActivityDetailsPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            BookingPage(activity: activity)));
+                        builder: (context) => BookingPage(activity: activity)));
               },
               child: const Row(
                 children: [Text('BOOK'), Spacer(), Icon(Icons.chevron_right)],
