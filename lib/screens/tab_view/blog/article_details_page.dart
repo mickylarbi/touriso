@@ -19,6 +19,10 @@ class ArticleDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    articlesCollection.doc(article.id).update({
+      'views': FieldValue.arrayUnion([uid])
+    });
+
     String sitesLength = article.siteIds.isEmpty
         ? ''
         : '${article.siteIds.length} site${article.siteIds.length == 1 ? '' : 's'}';
