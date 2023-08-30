@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:touriso/screens/auth/auth_shell.dart';
 import 'package:touriso/screens/auth/login_screen.dart';
 import 'package:touriso/screens/auth/register_screen.dart';
+import 'package:touriso/screens/tab_view/blog/blog_page.dart';
 import 'package:touriso/screens/tab_view/chat/chat_page.dart';
 import 'package:touriso/screens/tab_view/home/home_page.dart';
 import 'package:touriso/screens/tab_view/profile/profile_page.dart';
@@ -85,6 +86,14 @@ GoRouter goRouter = GoRouter(
             GoRoute(
               path: '/chat',
               builder: (context, state) => const ChatPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/blog',
+              builder: (context, state) => const BlogPage(),
             ),
           ],
         ),

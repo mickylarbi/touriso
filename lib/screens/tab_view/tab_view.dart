@@ -55,6 +55,11 @@ class _TabViewState extends State<TabView> {
                 activeIcon: Icon(Icons.message_rounded),
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.newspaper_outlined),
+                label: 'Blog',
+                activeIcon: Icon(Icons.newspaper),
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded),
                 label: 'Profile',
                 activeIcon: Icon(Icons.person_rounded),
@@ -96,4 +101,4 @@ class _TabViewState extends State<TabView> {
   /// - duration
 }
 
-List<String> pages = ['/explore', '/trips', '/chat', '/profile'];
+List<String> pages = ['/explore', '/trips', '/chat', '/blog', '/profile'];
